@@ -1,0 +1,36 @@
+{
+  "name": "rtcoder/cli-typo",
+  "type": "library",
+  "description": "Typography functions for PHP CLI",
+  "homepage": "https://github.com/rtcoder/cli-typo",
+  "license": "BSD-3-Clause",
+  "keywords": [
+    "php",
+    "cli",
+    "colors",
+    "typography",
+    "tables",
+    "input"
+  ],
+  "authors": [
+    {
+      "name": "Dawid Jeż",
+      "email": "dawidjez@gmail.com",
+      "homepage": "https://github.com/rtcoder",
+      "role": "developer"
+    }
+  ],
+  "require": {
+    "composer/installers": "~1.0",
+    "php": ">=8.2"
+  },
+  "autoload": {
+    "classmap": [
+      ""
+    ]
+  },
+  "extra": {
+    "branch-alias": {
+    }
+  }
+}
