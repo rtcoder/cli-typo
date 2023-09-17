@@ -21,13 +21,12 @@
     }
   ],
   "require": {
-    "composer/installers": "~1.0",
     "php": ">=8.2"
   },
   "autoload": {
-    "classmap": [
-      ""
-    ]
+    "psr-4": {
+      "Rtcoder\\CliTypo\\": ""
+    }
   },
   "extra": {
     "branch-alias": {
