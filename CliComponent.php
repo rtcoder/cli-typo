@@ -28,15 +28,20 @@ class CliComponent
      *
      * @param int $seconds number of seconds
      * @param bool $countdown show a countdown or not
+     * @param bool $caret_return
      * @return void
      */
-    public function wait(int $seconds = 0, bool $countdown = false): void
+    public function wait(int $seconds = 0, bool $countdown = false, bool $caret_return = false): void
     {
         if ($countdown === true) {
             $time = $seconds;
 
             while ($time > 0) {
-                fwrite(STDOUT, $time . '... ');
+                if (!$caret_return) {
+                    CliTypo::text()->write($time . '... ');
+                } else {
+                    CliTypo::text()->write_back_caret($time . '... ');
+                }
                 sleep(1);
                 $time--;
             }
