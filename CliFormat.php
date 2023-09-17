@@ -12,13 +12,17 @@ class CliFormat
      *
      * @param string $text text to show
      * @param string $border character used to border text
+     * @param string|null $sideBorder character used to border text on left and right sides
      * @return string bordered text
      */
-    public function bordered(string $text, string $border = "*"): string
+    public function bordered(string $text, string $border = "*", string $sideBorder = null): string
     {
+        if (is_null($sideBorder)) {
+            $sideBorder = $border;
+        }
         $countOfChars = strlen($text);
 
-        $emptyText = str_repeat(" ", (strlen($text) - 2) / 2);
+        $emptyText = str_repeat(" ", ceil((strlen($text) - 2) / 2));
 
         $string = str_repeat($border, $countOfChars * 2);
 
@@ -27,7 +31,7 @@ class CliFormat
         }
 
         $string .= "\n";
-        $string .= $border . $emptyText . $text . $emptyText . $border . "\n";
+        $string .= $sideBorder . $emptyText . $text . $emptyText . $sideBorder . "\n";
 
         $string .= str_repeat($border, $countOfChars * 2);
 
@@ -60,6 +64,18 @@ class CliFormat
      * @return string formatted text with date
      */
     public function with_date(string $text, string $date_format = "d.m.Y"): string
+    {
+        return "[" . date($date_format, time()) . "] " . $text;
+    }
+
+    /**
+     * Get text with date and time
+     *
+     * @param string $text text to show
+     * @param string $date_format format of datetime ex. d.m.Y H:i:s
+     * @return string formatted text with datetime
+     */
+    public function with_datetime(string $text, string $date_format = "d.m.Y H:i:s"): string
     {
         return "[" . date($date_format, time()) . "] " . $text;
     }
@@ -181,7 +197,7 @@ class CliFormat
         $inQuote = false;
         $ignoreNext = false;
 
-        $tab = "\t";
+        $tab = "    ";
         $newline = "\n";
 
         for ($i = 0; $i < strlen($json); $i++) {
